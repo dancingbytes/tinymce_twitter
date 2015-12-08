@@ -20,7 +20,7 @@
 
           '<div class="form-group">' +
             '<label>{preview_title}</label>' +
-            '<div class="tinymce-twitter-preview">&nbsp;</div>' +
+            '<div class="tinymce-twitter-preview" style="background-image:url(\'{bg}\')">&nbsp;</div>' +
           '</div>' +
 
         '</div>' +
@@ -64,7 +64,8 @@
 
         html:  Tmpl(FORM_TMPL, {
           utl_title:      'Введите ссылку на твит',
-          preview_title:  'Предпросмотр'
+          preview_title:  'Предпросмотр',
+          bg: url + '/img/twitter.svg'
         }),
 
         buttons: [
@@ -108,13 +109,13 @@
         }, 150);
 
       } else {
-        prevEl.html('Неверный ответ сервера');
+        prevEl.html('<p class="bg-danger">Неверный ответ сервера</p>');
       }
 
     }; // onSuccess
 
     function onFailure() {
-      prevEl.html('Ошибка обработки');
+      prevEl.html('<p class="bg-danger">Ошибка обработки</p>');
     }; // onFailure
 
     function onLoadTweet(evt) {
@@ -127,7 +128,7 @@
       loading     = true;
       urlBefore   = url;
 
-      prevEl.html('Загрузка...');
+      prevEl.html('<p class="bg-info">Загрузка...</p>');
 
       $.ajax({
 
